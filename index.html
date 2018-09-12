@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>Change Calculator</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+  </head>
+
+  <body>
+    <!-- Write your markup here -->
+
+    <!--Hero Section-->
+    <section class="hero is-danger">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title is-1">Change Calculator</h1>
+          <h2 class="subtitle">Calculate the exact change needed for your customer</h2>
+        </div>
+      </div>
+    </section>
+
+    <!--Columns Section-->
+    <div class="columns">
+      <div class="column">
+        <div class="card" id="card1">
+          <div class="card-content">
+            <h2 class="title is-5 has-text-centered">Total Cost of Goods</h2>
+            <input class="input" type="text" placeholder="Amount Due" id="amount-due" />
+            <p>&nbsp;</p>
+            <h2 class="title is-5 has-text-centered">Amount Given By Customer</h2>
+            <input class="input" type="text" placeholder="Amount Received" id="amount-received" />
+            <p>&nbsp;</p>
+            <p class="has-text-centered" id="result-message"></p>
+          </div>
+          <footer class="card-footer">
+            <div class="card-footer-item">
+              <a class="button is-danger is-fullwidth is-outlined" id="calculate-change">Submit</a>
+            </div>
+          </footer>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card is-hidden" id="card2">
+          <div class="card-content has-text-centered">
+            <nav class="level">
+                <div class="level-item has-text-centered">
+                  <figure class='image is-128x128'>
+                    <img src='http://www.myiconfinder.com/uploads/iconsets/256-256-f6f160940475a0a7356907049bf77410-dollars.png'>
+                    <h2 class="title is-5 has-text-centered" id="total-dollars">Total Dollars</h2>
+                    <p id="dollars-output"></p>
+                    <p>&nbsp;</p>
+                  </figure>
+                </div>
+            </nav>            
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <input type="checkbox" id="dollars-check"/>
+            <span id="text-checkbox">Check here to display which dollar bills to give</span>
+            <p>&nbsp;</p>
+            <h5 id="twenty">Twenty Dollar Bills</h5>
+            <p></p>
+            <p class="has-text-centered" id="twenty-bills"></p>
+            <p></p>
+            <h5 id="ten">Ten Dollar Bills</h5>
+            <p></p>
+            <p class="has-text-centered" id="ten-bills"></p>
+            <p></p>
+            <h5 id="five">Five Dollar Bills</h5>
+            <p></p>
+            <p class="has-text-centered" id="five-bills"></p>
+            <p></p>
+            <h5 id="one">One Dollar Bills</h5>
+            <p></p>
+            <p class="has-text-centered" id="one-bills"></p>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card is-hidden" id="card3">
+          <div class="card-content has-text-centered">
+              <nav class="level">
+                  <div class="level-item has-text-centered">
+                    <figure class='image is-128x128'>
+                      <img src='data:image/jpeg;base64,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'>
+                      <h2 class="title is-5 has-text-centered" id="total-coins">Total Coins</h2>
+                      <p>&nbsp;</p>
+                    </figure>
+                  </div>
+              </nav>
+            
+            <p>&nbsp;</p>
+            <h4 class="has-text-centered" id="quarters">Quarters</h4>
+            <p class="has-text-centered" id="quarters-output"></p>
+        
+            <h4 class="has-text-centered" id="dimes">Dimes</h4>
+            <p class="has-text-centered" id="dimes-output"></p>
+        
+            <h4 class="has-text-centered" id="nickels">Nickels</h4>
+            <p class="has-text-centered" id="nickels-output"></p>
+        
+            <h4 class="has-text-centered" id="pennies">Pennies</h4>
+            <p class="has-text-centered" id="pennies-output"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    
+
+    <!-- Don't forget to add your <script> tag here -->
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+    <script src="main.js" charset="utf-8"></script>
+
+  </body>
+
+</html>
